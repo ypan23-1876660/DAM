@@ -178,6 +178,7 @@ os.chdir(output_file_path)
 #Print channel name of dead flies that are removed by value == 0
 print("Remove Dead Flies")
 print(value_zero)
+print("hello")
 
 #Print preview for each csv file and export csv file to output file path 
 files = [x + ".csv" for x in files]
