@@ -5,8 +5,8 @@
 #SBATCH --partition=compute
 #SBATCH --time=00:10:00
 #SBATCH --mem=2G
-#SBATCH --output=/data/mackanholt_lab/yp/DAM_streamline_package/output/preview.%j.out
-#SBATCH --error=/data/mackanholt_lab/yp/DAM_streamline_package/output/error.%j.err
+#SBATCH --output=/data/mackanholt_lab/yp/DAM_streamline_package/output/preview/preview.%j.out
+#SBATCH --error=/data/mackanholt_lab/yp/DAM_streamline_package/output/error/error.%j.err
 #SBATCH --mail-type=END
 #SBATCH --mail-user=yp@clemson.edu
 

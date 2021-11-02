@@ -1,6 +1,6 @@
 READ ME
 
-Usage: Process DAM data for SAS analysis 
+Usage: Process ShinyR DAM output data for SAS analysis 
 
 Simplest usage:
 cd to the folder containing the dam_script.py, run <sbatch dam_shscript.sh>
