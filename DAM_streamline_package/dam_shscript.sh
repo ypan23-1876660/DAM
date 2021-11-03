@@ -12,7 +12,7 @@
 
 # Users, input variables:
 
-cd /data/mackanholt_lab/yp/blips
+cd /data/mackanholt_lab/yp/DAM_streamline_package
 
 python3 /data/mackanholt_lab/yp/DAM_streamline_package/dam_script.py \
 --f1 Individual_day_night_sleep.csv \
@@ -20,5 +20,4 @@ python3 /data/mackanholt_lab/yp/DAM_streamline_package/dam_script.py \
 --f3 Individual_daily_locomotor_activity_data.csv \
 --d4 031_deadflies.txt \
 -c No_Sex_Rep \
--o /data/mackanholt_lab/yp/DAM_streamline_package/output/output_csv
 

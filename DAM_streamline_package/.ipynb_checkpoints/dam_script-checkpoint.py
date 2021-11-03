@@ -90,14 +90,14 @@ def bout_count(df):
     date = boutdf_nodead.groupby('Channel')['date'].nunique()
     bout_count_df = (count/date).to_frame()
     #Rename bout to Bout Count
-    bout_count_df = bout_count_df.rename(columns={bout_count_df.columns[0]: 'Bout Count'})
+    bout_count_df = bout_count_df.rename(columns={bout_count_df.columns[0]: 'Bout_Count'})
     
     #For matching Channel with Condition
     bout_count_df = pd.merge(bout_count_df,bout_time, left_on= ['Channel'], right_on=['Channel'],how='inner')
     #Drop duplicate rows
     bout_count = bout_count_df.drop_duplicates(subset= ['Channel'])
     #Select only necessary columns for Bout Count
-    bout_count = bout_count[['Channel', 'Bout Count', 'Condition']]
+    bout_count = bout_count[['Channel', 'Bout_Count', 'Condition']]
     bout_count = sep_condition(bout_count)
     return bout_count
 
@@ -173,12 +173,12 @@ files = ["Ind_day_night_sleep_nodead",
          "Ind_daily_locomotor_activity_data_nodead_compiled"]
 
 #Set output file path
-os.chdir(output_file_path)
+os.chdir(str(cwd) + "/output/output_csv")
 
 #Print channel name of dead flies that are removed by value == 0
 print("Remove Dead Flies")
 print(value_zero)
-print("hello")
+
 
 #Print preview for each csv file and export csv file to output file path 
 files = [x + ".csv" for x in files]
