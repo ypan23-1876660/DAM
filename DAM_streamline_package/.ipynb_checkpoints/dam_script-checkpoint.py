@@ -37,7 +37,7 @@ for opt, arg in opts:
 
 
 #Renameing coloumn "value" in locomotor to "bout length"
-locomotor = locomotor.rename(columns = {"variable":"Channel", "value":"Bout_Length"})
+locomotor = locomotor.rename(columns = {"variable":"Channel", "value":"bout_length"})
 
 
 #Remove dead flies across files where locomotor value == 0 
@@ -76,7 +76,7 @@ def sep_condition(df):
     return df
 
 #Create filters: sleep vs activity, day vs night
-sleep = (boutdf['sleep_counts'] == 1) & (boutdf['Bout_Length'] >= 5)
+sleep = (boutdf['sleep_counts'] == 1) & (boutdf['bout_length'] >= 5)
 activity = boutdf['sleep_counts'] == 0
 #split up day and night
 day = boutdf['Dec_ZT_time'] <720
@@ -134,7 +134,7 @@ Ind_activity_bout_nodead_day_compiled = bout_length_compiled(boutdf[activity & d
 Ind_activity_bout_nodead_night_compiled = bout_length_compiled(boutdf[activity & night])
 
 #Locomotor:
-Ind_daily_locomotor_activity_data_nodead_compiled = bout_length_compiled(locomotor_nodead).rename(columns = {"bout_length":"Activity"})
+Ind_daily_locomotor_activity_data_nodead_compiled = bout_length_compiled(locomotor_nodead).rename(columns = {"Bout_Length":"Activity"})
 locomotor_prev = Ind_daily_locomotor_activity_data_nodead_compiled.sort_values(by=['Activity'], ascending = False)
 
 #Store the dataframes into a list for iteration
