@@ -166,10 +166,10 @@ for raw in os.listdir((str(cwd) + '/data')):
         
         fixed2 = fix_blips2(fixed1)
         
-        print(str(raw) + ' Preview of the first 5 rows of the output txt file')
+        print(str(raw) + ' Preview head')
         print(fixed2.head(5))
         
-        print(str(raw) + ' Preview of the last 5 rows of the output txt file')
+        print(str(raw) + ' Preview tail')
         print(fixed2.tail(5))
         
         np.savetxt((str(cwd) + '/output/output_txt/' + 'adj_' + str(raw)), fixed2.values, fmt='%s')
