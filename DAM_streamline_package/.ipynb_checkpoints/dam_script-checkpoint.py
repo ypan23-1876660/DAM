@@ -11,11 +11,11 @@ os.chdir(str(cwd) + "/data")
 argv = sys.argv[1:]
 inputfiles = [None]*3
 dead_flies_file = None
-output_file_path = None
+
 
 
 try:
-    opts, args = getopt.getopt(argv, "h:c:o:", ["f1=","f2=","f3=","d4="])
+    opts, args = getopt.getopt(argv, "h:c:", ["f1=","f2=","f3=","d4="])
     
 except:
     print("Error")
@@ -23,8 +23,6 @@ except:
 for opt, arg in opts:
     if opt in ['-c']:
         columns = str(arg)
-    elif opt in ['-o']:
-        output_file_path = str(arg)
     elif opt in ['--f1']:
         inputfiles[0] = arg
         day_night_sleep = pd.read_csv(str(inputfiles[0]))
