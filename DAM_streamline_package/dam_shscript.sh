@@ -12,9 +12,14 @@
 
 # Users, input variables:
 
-cd /data/mackanholt_lab/yp/git_DAM/DAM/DAM_streamline_package
+wkdir="/data/mackanholt_lab/yp/git_DAM/DAM/DAM_streamline_package"
+cd ${wkdir}
 
-python3 /data/mackanholt_lab/yp/git_DAM/DAM/DAM_streamline_package/dam_script.py \
+# Enter conda environment with python 3.9
+source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
+conda activate snakemake
+
+python3 ${wkdir}/dam_script.py \
 --f1 Individual_day_night_sleep.csv \
 --f2 Individual_sleep_activity_bout_data.csv \
 --f3 Individual_daily_locomotor_activity_data.csv \

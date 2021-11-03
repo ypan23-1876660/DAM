@@ -23,8 +23,15 @@ INSTRUCTIONS:
 #SBATCH --mail-user=<user email>
 
 4. Change Users, input variables:("\" for break between lines)
-cd <working directory>/DAM_streamline_package
-python3 <working directory>/DAM_streamline_package/dam_script.py
+wkdir="<working directory>"
+cd ${wkdir}
+
+# Enter conda environment with python 3.9
+source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
+conda activate snakemake
+
+
+python3 ${wkdir}/dam_script.py
 --f1 Individual_day_night_sleep.csv \
 --f2 Individual_sleep_activity_bout_data.csv \
 --f3 Individual_daily_locomotor_activity_data.csv \
@@ -48,8 +55,14 @@ EXAMPLE for 3 and 4:
 
 
 # Users, input variables:
-cd /data/mackanholt_lab/yp/git_DAM/DAM/DAM_streamline_package
-python3 /data/mackanholt_lab/yp/git_DAM/DAM/DAM_streamline_package/dam_script.py \
+wkdir="/data/mackanholt_lab/yp/git_DAM/DAM/DAM_streamline_package"
+cd ${wkdir}
+
+# Enter conda environment with python 3.9
+source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
+conda activate snakemake
+
+python3 ${wkdir}/dam_script.py \
 --f1 Individual_day_night_sleep.csv \
 --f2 Individual_sleep_activity_bout_data.csv \
 --f3 Individual_daily_locomotor_activity_data.csv \

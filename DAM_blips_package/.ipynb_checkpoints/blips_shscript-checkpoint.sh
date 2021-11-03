@@ -12,9 +12,14 @@
 
 # Users, input variables:
 
-cd /data/mackanholt_lab/yp/git_DAM/DAM/DAM_blips_package
+wkdir="/data/mackanholt_lab/yp/git_DAM/DAM/DAM_blips_package"
+cd ${wkdir}
 
-python3 /data/mackanholt_lab/yp/git_DAM/DAM/DAM_blips_package/blips_script.py \
+# Enter conda environment with python 3.9
+source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
+conda activate snakemake
+
+python3 ${wkdir}/blips_script.py \
 -s '30 Sep 20' \
 -e '6 Oct 20' \
 

@@ -16,8 +16,14 @@ INSTRUCTIONS:
 #SBATCH --mail-user=<user email>
 
 3. Change Users, input variables:("\" for break between lines)
-cd <working directory>/DAM_blips_package
-python3 <working directory>/DAM_blips_package/blips_script.py
+wkdir="<working directory>"
+cd ${wkdir}
+
+# Enter conda environment with python 3.9
+source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
+conda activate snakemake
+
+python3 ${wkdir}/blips_script.py
 -s 'start date' \
 -o 'end date' 
 
@@ -37,7 +43,13 @@ EXAMPLE for 2 and 3:
 
 
 # Users, input variables:
-cd /data/mackanholt_lab/yp/git_DAM/DAM/DAM_blips_package
-python3 /data/mackanholt_lab/yp/git_DAM/DAM/DAM_blips_package/blips_script.py \
+wkdir="/data/mackanholt_lab/yp/git_DAM/DAM/DAM_blips_package"
+cd ${wkdir}
+
+# Enter conda environment with python 3.9
+source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
+conda activate snakemake
+
+python3 ${wkdir}/blips_script.py \
 -s '30 Sep 20' \
 -o '6 Oct 20'  
