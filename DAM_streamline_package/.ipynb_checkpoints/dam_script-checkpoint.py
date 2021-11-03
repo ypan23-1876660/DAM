@@ -37,7 +37,8 @@ for opt, arg in opts:
 
 
 #Renameing coloumn "value" in locomotor to "bout length"
-locomotor = locomotor.rename(columns = {"variable":"Channel", "value":"bout_length"})
+locomotor = locomotor.rename(columns = {"variable":"Channel", "value":"Bout_Length"})
+
 
 #Remove dead flies across files where locomotor value == 0 
 value_zero = locomotor[locomotor['bout_length'] == 0]
@@ -75,7 +76,7 @@ def sep_condition(df):
     return df
 
 #Create filters: sleep vs activity, day vs night
-sleep = (boutdf['sleep_counts'] == 1) & (boutdf['bout_length'] >= 5)
+sleep = (boutdf['sleep_counts'] == 1) & (boutdf['Bout_Length'] >= 5)
 activity = boutdf['sleep_counts'] == 0
 #split up day and night
 day = boutdf['Dec_ZT_time'] <720
@@ -106,6 +107,7 @@ def bout_length_compiled(df):
     activity_mean = activity_mean.drop_duplicates(subset= ['Channel'])
     activity_mean = activity_mean[['Channel', 'bout_length', 'Condition']]
     Ind_activity_bout_nodead_compiled = sep_condition(activity_mean)
+    Ind_activity_bout_nodead_compiled = Ind_activity_bout_nodead_compiled.rename(columns = {"bout_length":"Bout_Length"})
     return Ind_activity_bout_nodead_compiled
 
 
@@ -157,7 +159,7 @@ files = ["Ind_day_night_sleep_nodead",
          "Ind_day_sleep_nodead",
          "Ind_night_sleep_nodead",
          "Ind_sleep_bout_nodead_counts_compiled",
-         "Ind_sleep_bout_nodead_bout_counts_day_compiled", 
+         "Ind_sleep_bout_nodead_counts_day_compiled", 
          "Ind_sleep_bout_nodead_counts_night_compiled",
          "Ind_activity_bout_nodead_counts_compiled",
          "Ind_activity_bout_nodead_counts_day_compiled",
@@ -175,7 +177,7 @@ os.chdir(str(cwd) + "/output/output_csv")
 
 #Print channel name of dead flies that are removed by value == 0
 print("Remove Dead Flies")
-print(value_zero)
+print(nodead)
 
 
 #Print preview for each csv file and export csv file to output file path 
