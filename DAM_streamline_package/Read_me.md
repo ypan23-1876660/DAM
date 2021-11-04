@@ -1,4 +1,4 @@
-READ ME
+README
 -------
 
 Usage: Process ShinyR DAM output data for SAS analysis 
