@@ -1,4 +1,5 @@
-INSTRUCTIONS:
+INSTRUCTIONS
+------------
 
 1. Upload all the raw data files into "data" folder
 
