@@ -1,4 +1,4 @@
-INSTRUCTIONS:
+##INSTRUCTIONS:
 
 1. Upload all the raw data files into "data" folder
 
@@ -10,6 +10,7 @@ INSTRUCTIONS:
 
 
 3. Change the variables in shell script. Modify the variables in <>
+`
 #!/bin/bash
 #
 #SBATCH --job-name=<job name>
@@ -21,6 +22,7 @@ INSTRUCTIONS:
 #SBATCH --error=<working directory>/DAM_streamline_package/output/error/<job name>.%j.err
 #SBATCH --mail-type=<type>
 #SBATCH --mail-user=<user email>
+`
 
 4. Change Users, input variables:("\" for break between lines)
 wkdir="<working directory>"
