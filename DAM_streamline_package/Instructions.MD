@@ -1,4 +1,9 @@
+<<<<<<< HEAD:DAM_streamline_package/Instructions.MD
 ##INSTRUCTIONS:
+=======
+INSTRUCTIONS
+------------
+>>>>>>> f299af3657149cb5fac42ec304b8f19baee6932b:DAM_streamline_package/Instructions.md
 
 1. Upload all the raw data files into "data" folder
 
