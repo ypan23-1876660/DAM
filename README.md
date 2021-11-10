@@ -1,5 +1,8 @@
 # **Streamlined DAM Analysis**
-### **D**rosophila **A**ctivity **M**onitor
+
+### **DAM**: **D**rosophila **A**ctivity **M**onitor
+
+---
 
 Refer to the Read_me.md and Instructions.md in each pacakge for more information.
 
