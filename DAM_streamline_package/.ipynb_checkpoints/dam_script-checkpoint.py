@@ -97,6 +97,7 @@ def bout_count(df):
     bout_count = bout_count_df.drop_duplicates(subset= ['Channel'])
     #Select only necessary columns for Bout Count
     bout_count = bout_count[['Channel', 'Bout_Count', 'Condition']]
+    bout_count = bout_count.fillna(0)
     bout_count = sep_condition(bout_count)
     return bout_count
 
@@ -107,6 +108,7 @@ def bout_length_compiled(df):
     activity_mean = activity_mean.drop_duplicates(subset= ['Channel'])
     activity_mean = activity_mean[['Channel', 'bout_length', 'Condition']]
     Ind_activity_bout_nodead_compiled = sep_condition(activity_mean)
+    Ind_activity_bout_nodead_compiled = Ind_activity_bout_nodead_compiled.fillna(0)
     Ind_activity_bout_nodead_compiled = Ind_activity_bout_nodead_compiled.rename(columns = {"bout_length":"Bout_Length"})
     return Ind_activity_bout_nodead_compiled
 
