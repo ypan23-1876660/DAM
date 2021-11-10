@@ -1,28 +1,27 @@
-# Drosophila Activity Monitor (DAM) Streamlined Analysis
+# **Streamlined DAM Analysis**
+### **D**rosophila **A**ctivity **M**onitor
 
 Refer to the Read_me.md and Instructions.md in each pacakge for more information.
 
-Packages
---------
+## Packages
 
 - DAM_blips_package
 - DAM_streamline_package
 
-Steps
------
+## Steps
 
 1. Download the repository to your working directory on Secretariat
 
-   - Option A: Download with `git`: `git clone git@github.com:ypan23-1876660/DAM.git`
+   - Option A: Download _with_ git: `git clone git@github.com:ypan23-1876660/DAM.git`
 
-   - Option B: Download without `git`: `svn checkout https://github.com/ypan23-1876660/DAM`
+   - Option B: Download _without_ `git`: `svn checkout https://github.com/ypan23-1876660/DAM`
 
-2. Run the DAM_blips_package script
+2. Run the DAM_blips_package script: `sbatch blips_shscript.sh`
 
 3. Download the results from (2) and run ShinyR DAM
 
 4. Upload the results from (3) to Secretariat
 
-5. Run the DAM_streamline_package script
+5. Run the DAM_streamline_package script: `sbatch dam_shscript.sh`
 
 6. Download the results for futher analysis (e.g. SAS)
