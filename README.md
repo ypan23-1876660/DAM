@@ -17,7 +17,7 @@ Refer to the Read_me.md and Instructions.md in each pacakge for more information
 
    - Option A: Download _with_ git: `git clone git@github.com:ypan23-1876660/DAM.git`
 
-   - Option B: Download _without_ `git`: `svn checkout https://github.com/ypan23-1876660/DAM`
+   - Option B: Download _without_ git: `svn checkout https://github.com/ypan23-1876660/DAM`
 
 2. Run the DAM_blips_package script: `sbatch blips_shscript.sh`
 
