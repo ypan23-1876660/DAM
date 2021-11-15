@@ -39,11 +39,11 @@ def select_dates(df, start_date, end_date):
     end_date = (df['Date'] == edate) & (df['Time'] == "23:59:00")
 
     #Get the indices of start and end date
-    start_date_index = int(df[start_date]['Index']-1)
-    end_date_index = int(df[end_date]['Index']-1)
+    start_date_index = int((file[start_date].index)[0])
+    end_date_index = int((file[end_date].index)[0])+1
 
     #Filter file based on selected dates & reset index of the new selected dataframe
-    df1 = df.loc[start_date_index:end_date_index].reset_index(drop=True)
+    df1 = file[start_date_index:end_date_index].reset_index(drop=True)
     return(df1)
 
 
@@ -154,7 +154,17 @@ for raw in os.listdir((str(cwd) + '/data')):
     if raw.endswith(".txt"):
         file = pd.read_csv(raw, delimiter = "\t", header=None)
         file = file.rename(columns={file.columns[0]: 'Index', file.columns[1]: 'Date', file.columns[2]: 'Time'})
-        
+         
+        try:
+            check_s = datetime.strptime(sdate, '%d %b %y')
+            check_e = datetime.strptime(edate, '%d %b %y')
+            exp_days = (check_e-check_s).days
+            if exp_days <= 0:
+                print('End date is before start date')
+                break
+        except:
+            continue
+            
         df = select_dates(file, sdate, edate)
         
         print(str(raw) + ' Blips')
