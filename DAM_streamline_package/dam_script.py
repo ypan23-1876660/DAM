@@ -5,7 +5,8 @@ import os
 
 #Set to working directory
 cwd = os.getcwd()
-os.chdir(str(cwd) + "/data")
+p = Path(cwd).parent
+os.chdir(str(p) + "/data")
 
 #Read in user variables
 argv = sys.argv[1:]
