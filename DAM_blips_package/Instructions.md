@@ -17,7 +17,7 @@ INSTRUCTIONS
         #SBATCH --mail-type=<type>
         #SBATCH --mail-user=<user email>
 
-3. Change Users, input variables: ("\" for break between lines)
+3. Change Users, input variables: ("\\" for break between lines)
 
         wkdir="<working directory>"
         cd ${wkdir}
