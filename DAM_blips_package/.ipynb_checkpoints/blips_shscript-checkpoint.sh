@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#SBATCH --job-name=try2
+#SBATCH --job-name=try_check_date
 #SBATCH --cpus-per-task=1
 #SBATCH --partition=compute
 #SBATCH --time=00:10:00
@@ -16,10 +16,10 @@ wkdir="/data/mackanholt_lab/yp/git_DAM/DAM/DAM_blips_package"
 cd ${wkdir}
 
 # Enter conda environment with python 3.9
-source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
-conda activate snakemake
+#source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
+#conda activate snakemake
 
-python3 ${wkdir}/blips_script.py \
--s '30 Sep 20' \
--e '6 Oct 20' \
+python3 ${wkdir}/test_blips_script.py \
+-s '16 Jul 20' \
+-e '21 Jul 20' \
 

@@ -24,5 +24,5 @@ python3 ${wkdir}/dam_script.py \
 --f2 Individual_sleep_activity_bout_data.csv \
 --f3 Individual_daily_locomotor_activity_data.csv \
 --d4 031_deadflies.txt \
--c No_Sex_Rep \
+-c No_Sex_Rep 
 

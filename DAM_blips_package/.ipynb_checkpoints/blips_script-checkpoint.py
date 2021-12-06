@@ -7,6 +7,7 @@ import os
 import re
 import numpy as np
 from datetime import datetime, date, timedelta
+from pathlib import Path
 
 
 #Read in user variables
@@ -27,27 +28,31 @@ for opt, arg in opts:
 
 
 
-#Set to working directory
+#Set working directory to "data" folder to read in files in the "date" folder. They should be Monitor#.txt
 cwd = os.getcwd()
 os.chdir(str(cwd) + "/data")
 
 
-#Select exp dates
+#Select experiment dates
+#Input: Monitor#.txt, user input start date of the experiment, user input end date of the experiemtn
+#Input example: select dates("Monitor1.txt", '1 Nov 21', '5 Nov 21')
 def select_dates(df, start_date, end_date):
-    #Filter start and end date
+    #Filter start and end date by user input
     start_date = (df['Date'] == sdate) & (df['Time'] == "00:00:00") 
     end_date = (df['Date'] == edate) & (df['Time'] == "23:59:00")
 
     #Get the indices of start and end date
-    start_date_index = int(df[start_date]['Index']-1)
-    end_date_index = int(df[end_date]['Index']-1)
+    start_date_index = int((file[start_date].index)[0])
+    end_date_index = int((file[end_date].index)[0])+1
 
     #Filter file based on selected dates & reset index of the new selected dataframe
-    df1 = df.loc[start_date_index:end_date_index].reset_index(drop=True)
+    df1 = file[start_date_index:end_date_index].reset_index(drop=True)
     return(df1)
 
 
-#Find blips based on the last two characters are not equal to "00"
+#Find first type of blips: blips based on the last two characters are not equal to "00"
+#Input: Monitor#.txt
+#Input example: find_blips("Monitor#.txt")
 def find_blips(df):
     blips = []
     for i in range(len(df)):
@@ -58,7 +63,8 @@ def find_blips(df):
     return (df_blips)
 
 
-#Find where the blips are in the original df and fix all to "00"
+#Fix first type of blips: find where the blips that were found from def find_blips, and fix seconds of each blips to "00"
+#Input: Monitor#.txt, returned value from find_blips("Monitor#.txt")
 def fix_blips(df, blips):
 
     #Convert index.series to integer
@@ -80,7 +86,7 @@ def fix_blips(df, blips):
     return(df)
     
 
-
+#
 def fix_blips2(df):
     #Create a new column with datetime
     df['date_time'] = df['Date'] + ' ' + df['Time']
@@ -155,6 +161,17 @@ for raw in os.listdir((str(cwd) + '/data')):
         file = pd.read_csv(raw, delimiter = "\t", header=None)
         file = file.rename(columns={file.columns[0]: 'Index', file.columns[1]: 'Date', file.columns[2]: 'Time'})
         
+        '''
+        try:
+            check_s = datetime.strptime(sdate, '%d %b %y')
+            check_e = datetime.strptime(edate, '%d %b %y')
+            exp_days = (check_e-check_s).days
+            if exp_days <= 0:
+                print('End date is before start date')
+                break
+        except:
+            continue
+        '''
         df = select_dates(file, sdate, edate)
         
         print(str(raw) + ' Blips')

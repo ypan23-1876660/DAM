@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/data/mackanholt_lab/yp/git_DAM/DAM/DAM_blips_package/test_blips_script.py", line 168, in <module>
+    df = select_dates(file, sdate, edate)
+  File "/data/mackanholt_lab/yp/git_DAM/DAM/DAM_blips_package/test_blips_script.py", line 42, in select_dates
+    start_date_index = int((file[start_date].index)[0])
+  File "/opt/ohpc/pub/Software/anaconda3/envs/notebook_env/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 4297, in __getitem__
+    return getitem(key)
+IndexError: index 0 is out of bounds for axis 0 with size 0
