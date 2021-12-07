@@ -19,12 +19,12 @@ Refer to the Read_me.md and Instructions.md in each pacakge for more information
 
    - Option B: Download _without_ git: `svn checkout https://github.com/ypan23-1876660/DAM`
 
-2. Run the DAM_blips_package script: `sbatch blips_shscript.sh`
+2. Run the DAM_blips_package initiator script: `sbatch blips_initiator.sh`
 
 3. Download the results from (2) and run ShinyR DAM
 
 4. Upload the results from (3) to Secretariat
 
-5. Run the DAM_streamline_package script: `sbatch dam_shscript.sh`
+5. Run the DAM_streamline_package initiator script: `sbatch dam_initiator.sh`
 
 6. Download the results for futher analysis (e.g. SAS)
