@@ -158,7 +158,7 @@ def fix_blips2(df):
 
    
 #Loop through all the monitors and save each txt to output_txt
-for raw in os.listdir(str(p) + "/output/output_csv"):
+for raw in os.listdir(str(p) + "/data"):
     if raw.endswith(".txt"):
         file = pd.read_csv(raw, delimiter = "\t", header=None)
         file = file.rename(columns={file.columns[0]: 'Index', file.columns[1]: 'Date', file.columns[2]: 'Time'})

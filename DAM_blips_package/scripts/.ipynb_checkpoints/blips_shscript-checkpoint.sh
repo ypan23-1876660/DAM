@@ -16,10 +16,9 @@ wkdir="/data/mackanholt_lab/yp/git_DAM/DAM/DAM_blips_package/scripts"
 cd ${wkdir}
 
 # Enter conda environment with python 3.9
-#source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
-#conda activate snakemake
+source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
+conda activate snakemake
 
-python3 ${wkdir}/test_blips_script.py \
+python3 ${wkdir}/blips_script.py \
 -s '16 Jul 20' \
--e '21 Jul 20' \
-
+-e '21 Jul 20'
