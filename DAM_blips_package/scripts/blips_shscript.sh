@@ -21,5 +21,4 @@ cd ${wkdir}
 
 python3 ${wkdir}/test_blips_script.py \
 -s '16 Jul 20' \
--e '21 Jul 20' \
-
+-e '21 Jul 20'
