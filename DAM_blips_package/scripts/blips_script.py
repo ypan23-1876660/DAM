@@ -39,7 +39,10 @@ check_s = datetime.strptime(sdate, '%d %b %y')
 check_e = datetime.strptime(edate, '%d %b %y')
 exp_days = (check_e-check_s).days
 
-if exp_days >= 0:
+if exp_days < 0:
+    print('End date is before start date')
+    
+else:
     #Select experiment dates
     #Input: Monitor#.txt, user input start date of the experiment, user input end date of the experiemtn
     #Input example: select dates("Monitor1.txt", '1 Nov 21', '5 Nov 21')
@@ -198,5 +201,3 @@ if exp_days >= 0:
 
             np.savetxt((str(p) + "/output/output_csv" + 'adj_' + str(raw)), fixed2.values, fmt='%s')
 
-else:
-    print('End date is before start date')

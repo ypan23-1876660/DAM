@@ -20,5 +20,5 @@ source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
 conda activate snakemake
 
 python3 ${wkdir}/blips_script.py \
--s '16 Jul 20' \
--e '21 Jul 20'
+-s '21 Jul 20' \
+-e '16 Jul 20'
