@@ -199,5 +199,5 @@ else:
             print(str(raw) + ' Preview tail')
             print(fixed2.tail(5))
 
-            np.savetxt((str(p) + "/output/output_csv" + 'adj_' + str(raw)), fixed2.values, fmt='%s')
+            np.savetxt((str(p) + "/output/output_csv/" + 'adj_' + str(raw)), fixed2.values, fmt='%s')
 

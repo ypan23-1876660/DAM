@@ -23,8 +23,8 @@ INSTRUCTIONS
 #SBATCH --partition=compute
 #SBATCH --time=<time> (estimated time to execute the script: 5 seconds)
 #SBATCH --mem=<memory> (2G is sufficient)
-#SBATCH --output=<working directory>/DAM_streamline_package/output/preview/<job name>.%j.out
-#SBATCH --error=<working directory>/DAM_streamline_package/output/error/<job name>.%j.err
+#SBATCH --output=<working directory>/DAM/trunk/DAM_streamline_package/output/preview/<job name>.%j.out
+#SBATCH --error=<working directory>/DAM/trunk/DAM_streamline_package/output/error/<job name>.%j.err
 #SBATCH --mail-type=<type>
 #SBATCH --mail-user=<user email>
 `
