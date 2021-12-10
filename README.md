@@ -27,6 +27,8 @@ Refer to the Read_me.md and Instructions.md in each pacakge for more information
 
 5. Upload the results from (3) to Secretariat
 
-6. Run the DAM_streamline_package initiator script: `sbatch dam_initiator.sh`
+6. Edit the variables in DAM_streamline_package streamline_shscript.sh
 
-7. Download the results for futher analysis (e.g. SAS)
+7. Run the DAM_streamline_package initiator script: `sbatch dam_initiator.sh`
+
+8. Download the results for futher analysis (e.g. SAS)
