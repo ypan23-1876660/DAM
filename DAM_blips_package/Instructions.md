@@ -57,3 +57,6 @@ INSTRUCTIONS
     python3 ${wkdir}/blips_script.py \
     -s '30 Sep 20' \
     -o '6 Oct 20'  
+    
+4. Navigate to "/path/to/project_directory/DAM/trunk/DAM_blips_package/scripts" 
+5. Run `sbatch blips_initiator.sh`
