@@ -22,14 +22,14 @@ Refer to the Read_me.md and Instructions.md in each pacakge for more information
 
 2. Edit the variables in DAM_blips_package blips_shscript.sh
 
-3. Run the DAM_blips_package initiator script: `sbatch blips_initiator.sh`
+3. Run the blips initiator script: `sbatch blips_initiator.sh`
 
 4. Download the results from (2) and run ShinyR DAM
 
 5. Upload the results from (3) to Secretariat
 
-6. Edit the variables in DAM_streamline_package streamline_shscript.sh
+6. Edit the variables in streamline streamline_shscript.sh
 
-7. Run the DAM_streamline_package initiator script: `sbatch dam_initiator.sh`
+7. Run the streamline initiator script: `sbatch streamline_initiator.sh`
 
 8. Download the results for futher analysis (e.g. SAS)
