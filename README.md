@@ -8,8 +8,9 @@ Refer to the Read_me.md and Instructions.md in each pacakge for more information
 
 ## Packages
 
-- DAM_blips_package
-- DAM_streamline_package
+- Blips
+- Streamline
+- Longitudinal
 
 ## Steps
 
