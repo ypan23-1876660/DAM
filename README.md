@@ -20,7 +20,7 @@ Refer to the Read_me.md and Instructions.md in each pacakge for more information
 
    - Option B: Download _without_ git: `svn checkout https://github.com/ypan23-1876660/DAM`
 
-2. Edit the variables in DAM_blips_package blips_shscript.sh
+2. Edit the variables in blips blips_shscript.sh
 
 3. Run the blips initiator script: `sbatch blips_initiator.sh`
 
