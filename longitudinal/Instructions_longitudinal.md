@@ -34,7 +34,11 @@ INSTRUCTIONS
         --f3 Individual_daily_locomotor_activity_data.csv \
         --d4 deadflies.txt \
         -c <Condition> 
-
+    
+4. Navigate to the directory containing the longitudinal scrips: `cd/path/to/directory/longitudinal/scrips`
+    
+5. Run the script: `sbatch longitudinal_initiator.sh`
+    
 ---
 
 ##### EXAMPLE for 2 and 3:
@@ -66,4 +70,3 @@ INSTRUCTIONS
         --f3 *Individual_daily_locomotor_activity_data.csv* \
         --d4 *031_deadflies.txt* \
         -c *No_Sex_Rep* \
-    
