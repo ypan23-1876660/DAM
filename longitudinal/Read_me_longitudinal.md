@@ -14,6 +14,7 @@ Process ShinyR DAM output data for longitudinal analysis
     
   __`-c`__ CONDITION
 > The value of Condition column
+>
 > *ShinyR DAM "Condition" column entries that look like "CSB_F_EtOH_2" could correspond to a `-c` of "Line_Sex_Treatment_Rep".
 > This would result in the creation of columns corresponding to "Line," "Sex," "Treatment," and "Rep" in the CSV outputted as a result of this script.*
 >
@@ -29,6 +30,7 @@ Process ShinyR DAM output data for longitudinal analysis
 > Import csv files from ShinyR_outputs: individual_day_night_sleep.csv 
 >
 > Format: 'individual_day_night_sleep.csv'  (Include underscore, Exclude quotations)
+>
 > *The entered file name must match the uploaded raw data file name*
 >
 > e.g. : `'individual_day_night_sleep.csv'`
@@ -37,6 +39,7 @@ Process ShinyR DAM output data for longitudinal analysis
 > Import csv files from ShinyR_outputs: individual_sleep_activity_bout_data.csv
 >
 > Format: 'individual_sleep_activity_bout_data.csv'  (Include underscore, Exclude quotations)
+>
 > *The entered file name must match the uploaded raw data file name*
 >
 > e.g. : `'individual_sleep_activity_bout_data.csv'` 
@@ -45,6 +48,7 @@ Process ShinyR DAM output data for longitudinal analysis
 > Import csv files from ShinyR_outputs: individual_daily_locomotor_activity_data.csv
 >
 > Format: 'individual_daily_locomotor_activity_data.csv' (Include underscore, Exclude quotations)
+>
 > *The entered file name must match the uploaded raw data file name*
 >
 > e.g. : `'individual_daily_locomotor_activity_data.csv'` 
@@ -53,6 +57,7 @@ Process ShinyR DAM output data for longitudinal analysis
 > Import txt file for dead flies that are removed manually
 >
 > Format: 'dead_flies.txt' (Include underscore, Exclude quotations)    
+>
 > *The txt file should contain a list of channel names*
 >
 > e.g. :`'dead_files.txt'`
