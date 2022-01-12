@@ -60,12 +60,12 @@ INSTRUCTIONS
     #SBATCH --mail-type=*END*
     #SBATCH --mail-user=*ypp@clemson.edu*
 
->
+
     # Users, input variables:
     wkdir="*/path/to/project_directory*/DAM/trunk/blips/scripts"
     cd ${wkdir}
     
-> 
+
     # Enter conda environment with python 3.9
     source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
     conda activate snakemake
