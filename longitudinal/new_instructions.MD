@@ -4,9 +4,8 @@ INSTRUCTIONS
 1. Upload all the raw data files into "data" folder
 
 2. Change the variables in shell script. Modify the variables in <>
-    `
-    #!/bin/bash
     
+    #!/bin/bash
     #SBATCH --job-name=<job name>
     #SBATCH --cpus-per-task=1
     #SBATCH --partition=compute
@@ -16,11 +15,10 @@ INSTRUCTIONS
     #SBATCH --error=<working directory>/DAM/trunk/longitudinal/output/error/<job name>.%j.err
     #SBATCH --mail-type=<type>
     #SBATCH --mail-user=<user email>
-    `
+    
 
 3. Change Users, input variables: ("\\" for break between lines)
-
-    `
+    
     wkdir="<working directory>"
     cd ${wkdir}
 
@@ -35,13 +33,12 @@ INSTRUCTIONS
     --f3 Individual_daily_locomotor_activity_data.csv \
     --d4 deadflies.txt \
     -c <Condition> 
-    `
 
 ---
 
 ##### EXAMPLE for 2 and 3:
     
-    `
+
     #!/bin/bash
     #
     #SBATCH --job-name=*test1*
@@ -69,5 +66,5 @@ INSTRUCTIONS
     --f3 *Individual_daily_locomotor_activity_data.csv* \
     --d4 *031_deadflies.txt* \
     -c *No_Sex_Rep* \
-    `
+
      
