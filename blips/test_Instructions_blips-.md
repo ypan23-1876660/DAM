@@ -5,7 +5,7 @@ INSTRUCTIONS
 
 2. Change the variables in shell script. Modify the variables in <>
 > #!/bin/bash
-> #
+>
 > #SBATCH --job-name=<*job name*>
 >
 > #SBATCH --cpus-per-task=1
@@ -25,17 +25,21 @@ INSTRUCTIONS
 > #SBATCH --mail-user=<*user email*>
 
 3. Change Users, input variables: ("\\" for break between lines)
+> wkdir="<*working directory*>"
 >
-        wkdir="<*working directory*>"
-        cd ${wkdir}
-        
-        # Enter conda environment with python 3.9
-        source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
-        conda activate snakemake
-        
-        python3 ${wkdir}/blips_script.py
-        -s '<*start date*>' \
-        -o '<*end date*>' 
+> cd ${wkdir}
+> 
+> #Enter conda environment with python 3.9
+>
+> source /opt/ohpc/pub/Software/anaconda3/etc/profile.d/conda.sh
+>
+> conda activate snakemake
+>      
+> python3 ${wkdir}/blips_script.py
+>
+> -s '<*start date*>' \
+>
+> -o '<*end date*>' 
 
 4. Navigate to the directory containing the longitudinal scrips: `cd/path/to/directory/blips/scrips`
     
