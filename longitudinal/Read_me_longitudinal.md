@@ -7,7 +7,7 @@ Process ShinyR DAM output data for longitudinal analysis
 
 
 ### Simplest usage:
-1. Navigate to the directory containing the longitudinal scrips: `cd/path/to/directory/longitudinal/scrips`
+1. Navigate to the directory containing the longitudinal scrips: `cd/path/to/directory/longitudinal/scripts`
 2. Run the script: `sbatch longitudinal_initiator.sh`
     
 ### Options:
