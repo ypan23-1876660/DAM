@@ -61,6 +61,8 @@ Process ShinyR DAM output data for streamline analysis
 > *The txt file should contain a list of channel names*
 >
 > **e.g.** :`'dead_files.txt'`
+  
+    
 
 ### Output preview: Return the first 10 rows of each output csv files
 [Day_night_sleep]: Return the *mean sleep per individual*
