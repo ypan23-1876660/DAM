@@ -63,27 +63,32 @@ Process ShinyR DAM output data for streamline analysis
 > **e.g.** :`'dead_files.txt'`
 
 ### Output preview: Return the first 10 rows of each output csv files
-[***Day_night_sleep***]: Return the mean sleep per individual 
+[*Day_night_sleep*]: Return the mean sleep per individual 
 - [**Ind_day_night_sleep_nodead**]: day and night together
 - [**Ind_day_sleep_nodead**]: day only
 - [**Ind_night_sleep_nodead**]: night only
-
-- [**Ind_sleep_bout_nodead_counts_compiled**]: Return the *average sleep bout count* for an individual calculated by averaging all bout counts across the total experimental timeframe
-- [**Ind_sleep_bout_nodead_bout_counts_day_compiled**]: Return the *average sleep bout count* for an individual across total experimental days for *day*
-- [**Ind_sleep_bout_nodead_counts_night_compiled**]: Return the *average sleep bout count* for an individual across total experimental days for *night*  
-
-- [**Ind_activity_bout_nodead_counts_compiled**]: Return the *average activity bout count* for an individual across total experimental days for *day and night*
-- [**Ind_activity_bout_nodead_counts_day_compiled**]: Return the *average activity bout count* for an individual across total experimental days for *day*
-- [**Ind_activity_bout_nodead_counts_night_compiled**]: Return the *avaerage activity bout count* for an individual across total experimental days for *night*  
-
-- [**Ind_sleep_bout_nodead_boutlength5_compiled**]: Return the *average sleep bout length* for an individual calculated by averaging the daily bout length across all days for *day and night*
-- [**Ind_sleep_bout_nodead_boutlength5_day_compiled**]: Return the *average sleep bout length* for an individual across each date entry for *day*
-- [**Ind_sleep_bout_nodead_boutlength5_night_compiled**]: Return the *average sleep bout length* for an individual across each date entry for *night*  
-
-- [**Ind_activity_bout_nodead_compiled**]: Return the *average activity bout length* for an individual across each date entry for *day and night*
-- [**Ind_activity_bout_nodead_day_compiled**]: Return the *average activity bout length* for an individual across each date entry for *day*
-- [**Ind_activity_bout_nodead_night_compiled**]: Return the *average activity bout length* for an individual across each date entry for *night*  
-
-- [**locomotor_prev**]: Return the *average locomotor activity* (counts per day) for an individual across the total experimental timeframe for *day and night*
+  
+[*Ind_sleep_bout_nodead_counts*]: Return the average sleep bout count for an individual calculated by averaging all bout counts across the total experimental timeframe
+- [**Ind_sleep_bout_nodead_counts_compiled**]: day and night together
+- [**Ind_sleep_bout_nodead_bout_counts_day_compiled**]: day only
+- [**Ind_sleep_bout_nodead_counts_night_compiled**]: night only
+  
+[*Ind_activity_bout_nodead_counts*]: Return the average activity bout count for an individual calculated by averaging all bout counts across the total experimental timeframe
+- [**Ind_activity_bout_nodead_counts_compiled**]: day and night together
+- [**Ind_activity_bout_nodead_counts_day_compiled**]: day only
+- [**Ind_activity_bout_nodead_counts_night_compiled**]: night only
+  
+[*Ind_sleep_bout_nodead_boutlength5]: Return the average sleep bout length for an individual calculated by averaging the daily bout length across all days
+- [**Ind_sleep_bout_nodead_boutlength5_compiled**]: day and night together
+- [**Ind_sleep_bout_nodead_boutlength5_day_compiled**]: day only
+- [**Ind_sleep_bout_nodead_boutlength5_night_compiled**]: night only
+  
+[*Ind_activity_bout_nodead*]: Return the average activity bout length for an individual calculated by averaging the daily bout length across all days
+- [**Ind_activity_bout_nodead_compiled**]: day and night together
+- [**Ind_activity_bout_nodead_day_compiled**]: day only
+- [**Ind_activity_bout_nodead_night_compiled**]: night only
+  
+[*locomotor_prev*]: Return the average locomotor activity (counts per day) for an individual across the total experimental timeframe
+- [**Ind_daily_locomotor_activity_data_nodead_compiled**]: day and night together
 
      
