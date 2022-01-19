@@ -28,8 +28,10 @@ Refer to the Read_me.md and Instructions.md in each pacakge for more information
 
 5. Upload the results from (3) to Secretariat
 
-6. Edit the variables in streamline streamline_shscript.sh
+6. (a) Edit the variables in streamline [streamline_shscript.sh]
+   (b) Edit the variables in longitudinal [longitudinal_shscript.sh]
 
-7. Run the streamline initiator script: `sbatch streamline_initiator.sh`
+7. (a) Run the streamline initiator script: `sbatch streamline_initiator.sh`
+   (b) Run the longitudinal_initiator script: `sbatch longitudinal_initiator.sh`
 
 8. Download the results for futher analysis (e.g. SAS)
