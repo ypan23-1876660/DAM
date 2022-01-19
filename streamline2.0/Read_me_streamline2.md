@@ -65,22 +65,22 @@ Process ShinyR DAM output data for streamline analysis
     
 
 ### Output preview: Return the first 10 rows of each output csv files
-[Day_night_sleep]: Return the *mean sleep per individual*
+[Ind_day_night_sleep]: Return the *mean sleep per individual* (percent of timeframe an individual spent asleep)
 - [**Ind_day_night_sleep_nodead**]: day and night together
 - [**Ind_day_sleep_nodead**]: day only
 - [**Ind_night_sleep_nodead**]: night only
   
-[Ind_sleep_bout_nodead_counts]: Return the *average sleep bout count* for an individual calculated by averaging all bout counts across the total experimental timeframe
+[Ind_sleep_bout_nodead_counts]: Return the *average sleep bout count* for an individual calculated by averaging the total number of bout counts across the total experimental timeframe
 - [**Ind_sleep_bout_nodead_counts_compiled**]: day and night together
 - [**Ind_sleep_bout_nodead_bout_counts_day_compiled**]: day only
 - [**Ind_sleep_bout_nodead_counts_night_compiled**]: night only
   
-[Ind_activity_bout_nodead_counts]: Return the *average activity bout count* for an individual calculated by averaging all bout counts across the total experimental timeframe
+[Ind_activity_bout_nodead_counts]: Return the *average activity bout count* for an individual calculated by averaging the total number of bout counts across the total experimental timeframe
 - [**Ind_activity_bout_nodead_counts_compiled**]: day and night together
 - [**Ind_activity_bout_nodead_counts_day_compiled**]: day only
 - [**Ind_activity_bout_nodead_counts_night_compiled**]: night only
   
-[Ind_sleep_bout_nodead_boutlength5]: Return the *average sleep bout length* for an individual calculated by averaging the daily bout length across all days
+[Ind_sleep_bout_nodead_boutlength5]: Return the *average sleep bout length* for an individual calculated by averaging the daily bout length across all days, where sleep bout lengths were at least 5 minutes
 - [**Ind_sleep_bout_nodead_boutlength5_compiled**]: day and night together
 - [**Ind_sleep_bout_nodead_boutlength5_day_compiled**]: day only
 - [**Ind_sleep_bout_nodead_boutlength5_night_compiled**]: night only
