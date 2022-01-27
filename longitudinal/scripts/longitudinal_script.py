@@ -72,86 +72,71 @@ boutdf = a[~a.Index.isin(g.Index.values)]
 
 #Create a function for seperating conditions
 def sep_condition(df):
-    #Splitting value in Condition column by "_"
     sep_condition = df["Condition"].str.split("_", expand = True)
-    #Using the splitted values as column names
+    #changing column names
     sep_condition.columns = columns.split("_")
-    #Drop the old Condition column
     df = df.drop(columns = "Condition")
-    #Combine all the splitted columns into a dataframe
     df = df.merge(sep_condition, left_index=True, right_index=True)
     return df
 
 
-#Create filters
-#Sleep: If sleep count is 1 and if the sleep bout lenghth is greater than 5
+#Create filters: sleep vs activity, day vs night
 sleep = (boutdf['sleep_counts'] == 1) & (boutdf['bout_length'] >= 5)
-#Activity: if the sleep count is 0
 activity = boutdf['sleep_counts'] == 0
-#Day: If ZT time is less than 720 hours
+#split up day and night
 day = boutdf['Dec_ZT_time'] <720
-#Night: If ZT time is equal or greater than 720 hours
 night = boutdf['Dec_ZT_time'] >= 720
 
 
-#Create a function for calculating the sum of bout count
-#Input file from raw data: "Individual_sleep_activity_bout_data.csv"
-#Input dataframe from this pipiline: "boutdf"
-def bout_count_longitudinal(df_boutdf):    
-    #Groupby the dataframe "boutdf" by the order of Channel, date, condition
-    #Count the total number of bout within each group
-    #Convert the series result to dataframe and set the index as each column names
+#Create a function for counting bouts 
+#Delete the parts for merge, drop duplicates, because we just need the Condition for Channel name
+def bout_count_longitudinal(df_bout_df):    
     count = df_bout_df.groupby(['Channel', 'date', 'Condition'])['bout'].count().to_frame().reset_index()
-    #Rename the column name bout to Bout Count
+    #Rename bout to Bout Count
     bout_count = count.rename(columns={'bout': 'Bout_Count'})
-    #Fill in nan value with 0
     bout_count = bout_count.fillna(0)
-    #Split the Condition column into individual column names calling sep_condition function
     bout_count = sep_condition(bout_count)
     return(bout_count)
 
 
-#Create a function for calculating the sum of bout lenghts
-#Input file from raw data: "Individual_sleep_activity_bout_data.csv"
-#Input dataframe from this pipiline: "boutdf"
+#Create a function for counting bout lenghts
+#Delete the parts for merge, drop duplicates, because we just need the Condition for Channel name
 def bout_length_longitudinal(df_boutdf):    
-    #Groupby the dataframe "boutdf" by the order of Channel, date, condition
-    #Sum the total bout_length in each group from column bout_length 
-    #Convert the series result to dataframe and set the index as each column names
-    bout_length_sum = df_boutdf.groupby(['Channel', 'date', 'Condition'])['bout_length'].sum().to_frame().reset_index()
-    #Rename the column name bout_lenght to Bout_Length
-    bout_length_sum = bout_length_sum.rename(columns = {"bout_length":"Bout_Length"})
-    #Fill in nan value with 0
-    bout_length_sum = bout_length_sum.fillna(0)
-    #Split the Condition column into individual column names calling sep_condition function
+    bout_length_mean = df_boutdf.groupby(['Channel', 'date', 'Condition'])['bout_length'].mean().to_frame().reset_index()
+    bout_length_mean = sep_condition(bout_length_mean)
+    bout_length_mean = bout_length_mean.fillna(0)
+    bout_length_mean = bout_length_mean.rename(columns = {"bout_length":"Bout_Length"})
+    return(bout_length_mean)
+
+
+#Delete the parts for merge, drop duplicates, because we just need the Condition for Channel name
+def sum_sleep_per_ind_day_OR_night(df_boutdf):
+    bout_length_sum = df_boutdf.groupby(['Channel', 'Condition', 'date'])['bout_length'].sum().to_frame().reset_index()
+    proportion = bout_length_sum['bout_length']/720
+    bout_length_sum['sum_sleep_per_ind'] = proportion
     bout_length_sum = sep_condition(bout_length_sum)
+    bout_length_sum = bout_length_sum.fillna(0)
+    bout_length_sum = bout_length_sum.drop(columns = "bout_length")
+    return(bout_length_sum)
+
+def sum_sleep_per_ind_day_AND_night(df_boutdf):    
+    bout_length_sum = boutdf[sleep].groupby(['Channel', 'Condition', 'date'])['bout_length'].sum().to_frame().reset_index()
+    proportion = bout_length_sum['bout_length']/1440
+    bout_length_sum['sum_sleep_per_ind'] = proportion
+    bout_length_sum = sep_condition(bout_length_sum)
+    bout_length_sum = bout_length_sum.fillna(0)
+    bout_length_sum = bout_length_sum.drop(columns = "bout_length")
     return(bout_length_sum)
 
 
-#Create a function for calculating the sum of sleep for each individual fly
-#Input file from raw data: "Individual_day_night_sleep"
-#Input dataframe from this pipiline: "day_night_sleep_nodead"
-def sleep_per_ind_longitudinal(df_day_night_sleep_nodead):
-    #Group by the dataframe "day_night_sleep_nodead" by the order of Channel, Condition, Light_status
-    #Sum the total sleep from column mean_sleep_per_ind
-    sleep_sum = df_day_night_sleep_nodead.groupby(['Channel', 'Condition', 'Light_status'])['mean_sleep_per_ind'].sum().to_frame().reset_index()
-    #Rename the column mean_sleep_per_ind to sum_sleep_per_ind
-    sleep_sum = sleep_sum.rename(columns = {"mean_sleep_per_ind":"sum_sleep_per_ind"})
-    #Fill in nan value with 0
-    sleep_sum = sleep_sum.fillna(0)
-    #Split the Condition column into individual column names calling sep_condition function
-    sleep_sum = sep_condition(sleep_sum)
-    return(sleep_sum)
-
-
-#Sleep time: Apply filters Day, Night
-Ind_day_night_sleep_nodead = sleep_per_ind_longitudinal(day_night_sleep)
-Ind_day_sleep_nodead = Ind_day_night_sleep_nodead[Ind_day_night_sleep_nodead['Light_status'] == 'Day']
-Ind_night_sleep_nodead = Ind_day_night_sleep_nodead[Ind_day_night_sleep_nodead['Light_status'] == 'Night']
+#Sleep time calculate:
+Ind_day_night_sleep_nodead = sum_sleep_per_ind_day_AND_night(boutdf[sleep])
+Ind_day_sleep_nodead = sum_sleep_per_ind_day_OR_night(boutdf[sleep & day])
+Ind_night_sleep_nodead = sum_sleep_per_ind_day_OR_night(boutdf[sleep & night])
 
 
 
-#Bout count sum: Apply filters Day, Night, Activity, Sleep
+#Bout count:
 Ind_sleep_bout_nodead_counts_longitudinal = bout_count_longitudinal(boutdf[sleep])
 Ind_sleep_bout_nodead_bout_counts_day_longitudinal = bout_count_longitudinal(boutdf[sleep & day])
 Ind_sleep_bout_nodead_counts_night_longitudinal = bout_count_longitudinal(boutdf[sleep & night])
@@ -162,7 +147,7 @@ Ind_activity_bout_nodead_counts_night_longitudinal = bout_count_longitudinal(bou
 
 
 
-#Bout length sum: Apply filters Day, Night, Activity, Sleep
+#Bout length:
 Ind_sleep_bout_nodead_boutlength5_longitudinal = bout_length_longitudinal(boutdf[sleep])
 Ind_sleep_bout_nodead_boutlength5_night_longitudinal = bout_length_longitudinal(boutdf[sleep & night])
 Ind_sleep_bout_nodead_boutlength5_day_longitudinal = bout_length_longitudinal(boutdf[sleep & day])
@@ -172,10 +157,8 @@ Ind_activity_bout_nodead_night_longitudinal = bout_length_longitudinal(boutdf[ac
 
 
 
-#Locomotor activity:
-#Rename column bout_lenghth to Activity
+
 Ind_daily_locomotor_activity_data_nodead = sep_condition(locomotor_nodead).rename(columns = {"bout_length":"Activity"})
-#Sorted the values by Activity from highest to lowest for preview
 locomotor_prev = Ind_daily_locomotor_activity_data_nodead.sort_values(by=['Activity'], ascending = False)
 
 
