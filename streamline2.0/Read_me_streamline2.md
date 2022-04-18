@@ -7,7 +7,7 @@ Process ShinyR DAM output data for streamline analysis
 
 
 ### Simplest usage:
-1. Navigate to the directory containing the longitudinal scrips: `cd/path/to/directory/streamline/scrips`
+1. Navigate to the directory containing the longitudinal scrips: `cd/path/to/directory/streamline/scripts`
 2. Run the script: `sbatch streamline_initiator.sh`
     
 ### Options:
