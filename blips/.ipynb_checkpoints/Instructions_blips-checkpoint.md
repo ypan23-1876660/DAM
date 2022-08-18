@@ -12,12 +12,15 @@ INSTRUCTIONS
         #SBATCH --partition=compute
         #SBATCH --time=<time> (estimated time to execute the script: 5 seconds)
         #SBATCH --mem=<memory> (2G is sufficient)
-        #SBATCH --output=<working directory>/DAM/trunk/DAM_blips_package/output/preview/<job name>.%j.out
-        #SBATCH --error=<working directory>/DAM/trunk/DAM_blips_package/output/error/<job name>.%j.err
+        #SBATCH --output=<working directory>/DAM/trunk/blips/output/preview/<job name>.%j.out
+        #SBATCH --error=<working directory>/DAM/trunk/blips/output/error/<job name>.%j.err
         #SBATCH --mail-type=<type>
         #SBATCH --mail-user=<user email>
 
-3. Change Users, input variables: ("\\" for break between lines)
+3. Change Users, input variables: ("\\" for break between lines) \
+   **Please make sure the start and end date selected included COMPLETE recordings of the days (from 00:00:00 to 23:59:59) to avoid errors! It is recommended to select "start date" the date After the experimental setup date and select "end date" the date Before the experimental end date.**
+   \
+   Date format: Single digit for Day (eg. 6 Jul 22)
 
         wkdir="<working directory>"
         cd ${wkdir}
@@ -27,9 +30,12 @@ INSTRUCTIONS
         conda activate snakemake
         
         python3 ${wkdir}/blips_script.py
-        -s 'start date' \
-        -o 'end date' 
+        -s <'start date'> \
+        -o <'end date'> 
 
+4. Navigate to the directory containing the longitudinal scrips: `cd/path/to/directory/blips/scripts`
+    
+5. Run the script: `sbatch blips_initiator.sh`
 ---
 
 ##### EXAMPLE for 2 and 3:
@@ -41,13 +47,13 @@ INSTRUCTIONS
     #SBATCH --partition=compute
     #SBATCH --time=00:10:00
     #SBATCH --mem=2G
-    #SBATCH --output=/path/to/project_directory/DAM_blips_package/output/preview/preview.%j.out
-    #SBATCH --error=/path/to/project_directory/DAM_blips_package/output/error/error.%j.err
+    #SBATCH --output=/path/to/project_directory/DAM/trunk/blips/output/preview/preview.%j.out
+    #SBATCH --error=/path/to/project_directory/DAM/trunk/blips/output/error/error.%j.err
     #SBATCH --mail-type=END
-    #SBATCH --mail-user=username@clemson.edu
+    #SBATCH --mail-user=ypp@clemson.edu
 
     # Users, input variables:
-    wkdir="/path/to/project_directory/DAM_blips_package"
+    wkdir="/path/to/project_directory/DAM/trunk/blips/scripts"
     cd ${wkdir}
     
     # Enter conda environment with python 3.9
