@@ -14,7 +14,7 @@ argv = sys.argv[1:]
 inputfiles = [None]*3
 dead_flies_file = None
 
-
+print("this is a test")
 
 try:
     opts, args = getopt.getopt(argv, "h:c:", ["f1=","f2=","f3=","d4="])
