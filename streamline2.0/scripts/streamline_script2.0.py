@@ -84,13 +84,13 @@ day = boutdf['Dec_ZT_time'] <720
 night = boutdf['Dec_ZT_time'] >= 720
 
 #Create a function for counting bouts 
-def bout_count(df_boutdf, ref_boutdf):
+def bout_count(df_boutdf, ref_boutdf, ref_locomotor):
     #Getting all channel names
     unique_name = ref_boutdf[['Channel', 'Condition']].drop_duplicates()
     #Count bout in each group
     count = df_boutdf.groupby(['Channel', 'Condition'])['bout'].count()
     #Count the number of experiemnt days in each group
-    date = df_boutdf.groupby(['Channel', 'Condition'])['date'].nunique()
+    date = ref_locomotor.groupby(['Channel', 'Condition'])['date'].nunique()
     #Take average of count throughout each day
     bout_count_df = (count/date).to_frame().reset_index()
     #Rename the average value column to "Bout_Count" by column index, cannot change order
@@ -102,12 +102,13 @@ def bout_count(df_boutdf, ref_boutdf):
     return(bout_count)
 
 #Create a function for counting bout lenghts
-def bout_length_compiled(df_boutdf, ref_boutdf):
+def bout_length_compiled(df_boutdf, ref_boutdf, ref_locomotor):
     unique_name = ref_boutdf[['Channel', 'Condition']].drop_duplicates()
-    #Take the average of bout_length in each group 
-    activity_mean = df_boutdf.groupby(['Channel', 'Condition'])['bout_length'].mean().to_frame().reset_index()
+    activity_sum = df_boutdf.groupby(['Channel', 'Condition'])['bout_length'].sum()
+    date = ref_locomotor.groupby(['Channel', 'Condition'])['date'].nunique()
+    activity_mean = (activity_sum/date).to_frame().reset_index()
     bout_length = pd.merge(activity_mean, unique_name, left_on= ['Channel','Condition'], right_on=['Channel','Condition'],how='right').fillna(0)
-    Ind_activity_bout_nodead_compiled = bout_length.rename(columns = {"bout_length":"Bout_Length"})
+    Ind_activity_bout_nodead_compiled = bout_length.rename(columns = {0:"Bout_Length"})
     Ind_activity_bout_nodead_compiled = sep_condition(Ind_activity_bout_nodead_compiled)
     return(Ind_activity_bout_nodead_compiled)
 
@@ -119,23 +120,23 @@ Ind_night_sleep_nodead = Ind_day_night_sleep_nodead[Ind_day_night_sleep_nodead['
 
 
 #Bout count:
-Ind_sleep_bout_nodead_counts_compiled = bout_count(boutdf[sleep], boutdf)
-Ind_sleep_bout_nodead_bout_counts_day_compiled = bout_count(boutdf[sleep & day], boutdf)
-Ind_sleep_bout_nodead_counts_night_compiled = bout_count(boutdf[sleep & night], boutdf)
-Ind_activity_bout_nodead_counts_compiled = bout_count(boutdf[activity], boutdf)
-Ind_activity_bout_nodead_counts_day_compiled = bout_count(boutdf[activity & day], boutdf)
-Ind_activity_bout_nodead_counts_night_compiled = bout_count(boutdf[activity & night], boutdf)
+Ind_sleep_bout_nodead_counts_compiled = bout_count(boutdf[sleep], boutdf, locomotor_nodead)
+Ind_sleep_bout_nodead_bout_counts_day_compiled = bout_count(boutdf[sleep & day], boutdf, locomotor_nodead)
+Ind_sleep_bout_nodead_counts_night_compiled = bout_count(boutdf[sleep & night], boutdf, locomotor_nodead)
+Ind_activity_bout_nodead_counts_compiled = bout_count(boutdf[activity], boutdf, locomotor_nodead)
+Ind_activity_bout_nodead_counts_day_compiled = bout_count(boutdf[activity & day], boutdf, locomotor_nodead)
+Ind_activity_bout_nodead_counts_night_compiled = bout_count(boutdf[activity & night], boutdf, locomotor_nodead)
 
 #Bout length:
-Ind_sleep_bout_nodead_boutlength5_compiled = bout_length_compiled(boutdf[sleep], boutdf)
-Ind_sleep_bout_nodead_boutlength5_night_compiled = bout_length_compiled(boutdf[sleep & night], boutdf)
-Ind_sleep_bout_nodead_boutlength5_day_compiled = bout_length_compiled(boutdf[sleep & day], boutdf)
-Ind_activity_bout_nodead_compiled = bout_length_compiled(boutdf[activity], boutdf)
-Ind_activity_bout_nodead_day_compiled = bout_length_compiled(boutdf[activity & day], boutdf)
-Ind_activity_bout_nodead_night_compiled = bout_length_compiled(boutdf[activity & night], boutdf)
+Ind_sleep_bout_nodead_boutlength5_compiled = bout_length_compiled(boutdf[sleep], boutdf, locomotor_nodead)
+Ind_sleep_bout_nodead_boutlength5_night_compiled = bout_length_compiled(boutdf[sleep & night], boutdf, locomotor_nodead)
+Ind_sleep_bout_nodead_boutlength5_day_compiled = bout_length_compiled(boutdf[sleep & day], boutdf, locomotor_nodead)
+Ind_activity_bout_nodead_compiled = bout_length_compiled(boutdf[activity], boutdf, locomotor_nodead)
+Ind_activity_bout_nodead_day_compiled = bout_length_compiled(boutdf[activity & day], boutdf, locomotor_nodead)
+Ind_activity_bout_nodead_night_compiled = bout_length_compiled(boutdf[activity & night], boutdf, locomotor_nodead)
 
 #Locomotor:
-Ind_daily_locomotor_activity_data_nodead_compiled = bout_length_compiled(locomotor_nodead, boutdf).rename(columns = {"Bout_Length":"Activity"})
+Ind_daily_locomotor_activity_data_nodead_compiled = bout_length_compiled(locomotor_nodead, boutdf, locomotor_nodead).rename(columns = {"Bout_Length":"Activity"})
 locomotor_prev = Ind_daily_locomotor_activity_data_nodead_compiled.sort_values(by=['Activity'], ascending = False)
 
 #Store the dataframes into a list for iteration
