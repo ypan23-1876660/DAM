@@ -4,6 +4,10 @@ import pandas as pd
 import os
 from pathlib import Path
 
+#Set to display all columns
+pd.set_option('display.max_rows', 20)
+pd.set_option('display.max_columns', None)
+
 #Set to working directory
 cwd = os.getcwd()
 p = Path(cwd).parent
