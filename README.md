@@ -19,7 +19,7 @@ Please refer to the README and INSTRUCTIONS documents in the blips and streamlin
         wget 'https://github.com/ypan23-1876660/DAM/archive/refs/heads/main.zip'
         unzip main.zip && rm main.zip
 
-          > Make sure you are logged into the head / login node (*secretariat-master*) for this step!
+   > Make sure you are logged into the head / login node (*secretariat-master*) for this step!
 
 2. Edit the variables in *blips_shscript.sh* in blips/scripts
 
