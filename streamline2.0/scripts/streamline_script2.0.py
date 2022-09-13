@@ -4,7 +4,7 @@ import pandas as pd
 import os
 from pathlib import Path
 
-#Set to display all columns
+#Set printed dataframe size
 pd.set_option('display.max_rows', 20)
 pd.set_option('display.max_columns', None)
 
@@ -107,12 +107,35 @@ def bout_count(df_boutdf, ref_boutdf, ref_locomotor):
 
 #Create a function for counting bout lenghts
 def bout_length_compiled(df_boutdf, ref_boutdf, ref_locomotor):
+    #Getting unique channel names for mergingin later
+    unique_name = ref_boutdf[['Channel', 'Condition']].drop_duplicates()
+    #Experimental days
+    date = ref_locomotor.groupby(['Channel', 'Condition'])['date'].nunique()
+    #Calculating the sum of bout length/fly/phenotype/day
+    sum_length_perday = df_boutdf.groupby(['Channel', 'Condition','date'])['bout_length'].sum()
+    #Calculating the sum of bout count/fly/phenotype/day
+    sum_bout_perday = df_boutdf.groupby(['Channel', 'Condition','date'])['bout'].count()
+    #Calculating the average bout length/fly/phenotype/day
+    avg_perday = (sum_length_perday/sum_bout_perday).to_frame().reset_index().rename(columns = {0:"mean_per_day"})
+    #Summing the total averages bout length/fly/phenotype
+    avg_perday = avg_perday.groupby(['Channel', 'Condition'])['mean_per_day'].sum()
+    #Calculating the average bout length/fly/phenotype across total experimental days
+    activity_mean = (avg_perday/date).to_frame().reset_index()
+    #Merginging with reference dataframe to fill 0 for the flies that don't have a specific phenotype
+    bout_length = pd.merge(activity_mean, unique_name, left_on= ['Channel','Condition'], right_on=['Channel','Condition'],how='right').fillna(0)
+    #Renaming column to "Bout_Length"
+    Ind_activity_bout_nodead_compiled = bout_length.rename(columns = {0:"Bout_Length"})
+    #Seprate the columns
+    Ind_activity_bout_nodead_compiled = sep_condition(Ind_activity_bout_nodead_compiled)
+    return(Ind_activity_bout_nodead_compiled)
+
+def locomotor_compiled(df_boutdf, ref_boutdf, ref_locomotor):
     unique_name = ref_boutdf[['Channel', 'Condition']].drop_duplicates()
     activity_sum = df_boutdf.groupby(['Channel', 'Condition'])['bout_length'].sum()
     date = ref_locomotor.groupby(['Channel', 'Condition'])['date'].nunique()
     activity_mean = (activity_sum/date).to_frame().reset_index()
     bout_length = pd.merge(activity_mean, unique_name, left_on= ['Channel','Condition'], right_on=['Channel','Condition'],how='right').fillna(0)
-    Ind_activity_bout_nodead_compiled = bout_length.rename(columns = {0:"Bout_Length"})
+    Ind_activity_bout_nodead_compiled = bout_length.rename(columns = {0:"Activity"})
     Ind_activity_bout_nodead_compiled = sep_condition(Ind_activity_bout_nodead_compiled)
     return(Ind_activity_bout_nodead_compiled)
 
@@ -140,7 +163,7 @@ Ind_activity_bout_nodead_day_compiled = bout_length_compiled(boutdf[activity & d
 Ind_activity_bout_nodead_night_compiled = bout_length_compiled(boutdf[activity & night], boutdf, locomotor_nodead)
 
 #Locomotor:
-Ind_daily_locomotor_activity_data_nodead_compiled = bout_length_compiled(locomotor_nodead, boutdf, locomotor_nodead).rename(columns = {"Bout_Length":"Activity"})
+Ind_daily_locomotor_activity_data_nodead_compiled = locomotor_compiled(locomotor_nodead, boutdf, locomotor_nodead)
 locomotor_prev = Ind_daily_locomotor_activity_data_nodead_compiled.sort_values(by=['Activity'], ascending = False)
 
 #Store the dataframes into a list for iteration
